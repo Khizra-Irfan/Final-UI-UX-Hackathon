@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
@@ -13,14 +14,16 @@ export default function HeroSection() {
           </p>
         </div>
         <Button className="bg-[#F9F9F9] px-[40px] py-[34px] self-start text-[#2A254B] bg-opacity-80 hover:text-white hover:bg-[#2A254B] text-[16px] hover:bg-opacity-90 mt-auto flex justify-center items-center">
-  View collection
-</Button>
-
+          View collection
+        </Button>
       </div>
       <div className="aspect-square md:aspect-auto">
-        <img
+        <Image
           src="/Image-block.png"
           alt="Interior design showcase"
+          layout="responsive" // Automatically adjusts the image size based on the screen width
+          width={634} // Specify a width for the image
+          height={478} // Specify a height for the image
           className="w-full h-full object-cover"
         />
       </div>

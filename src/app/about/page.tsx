@@ -1,5 +1,6 @@
 import React from "react"; 
 import { Truck, Medal, CreditCard, Recycle } from 'lucide-react';
+import Image from 'next/image'; // Import Next.js Image component
 
 const About = () => {
   return (
@@ -28,20 +29,24 @@ const About = () => {
           </button>
         </div>
         <div className="w-full md:w-2/5">
-          <img
-            src="/Image-block.png"
+          <Image
+            src="/Image-block.png"  // Image path
             alt="About main"
             className="w-full transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
+            width={800}  // Adjust width
+            height={600} // Adjust height
           />
         </div>
       </div>
 
       {/* Service Section */}
       <div className="flex flex-col md:flex-row w-full h-auto items-center px-4 py-16 space-y-8 md:space-y-0">
-        <img
-          src="/Image (2).png"
+        <Image
+          src="/Image (2).png"  // Image path
           alt="Service"
           className="w-full md:w-2/5 transition-transform duration-300 ease-in-out hover:scale-105 hover:translate-y-1"
+          width={800}  // Adjust width
+          height={600} // Adjust height
         />
         <div className="border-2 bg-slate-200 w-full md:w-3/5 p-8 md:p-20">
           <h1 className="text-xl md:text-2xl text-[#2A254B]">

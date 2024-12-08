@@ -1,9 +1,10 @@
-"use client"
+"use client"; // Mark this component as a client-side component
 
 import { useEffect, useState } from 'react'
 import { Truck, Medal, CreditCard, Recycle } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"; 
+import Image from 'next/image'  // Import Image component from Next.js
 
 export default function FeaturesSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -43,9 +44,11 @@ export default function FeaturesSection() {
           >
             <Card className="border-0 shadow-none group">
               <div className="aspect-square relative overflow-hidden mb-3">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
+                  width={500} // Set fixed width for the image
+                  height={500} // Set fixed height for the image
                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
