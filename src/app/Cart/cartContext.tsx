@@ -1,6 +1,5 @@
-// src/app/cart/cartContext.tsx
+"use client";  // Ensures the context is managed client-side
 
-"use client";
 import React, { createContext, useContext, useState } from "react";
 
 // Define types for cart item and context

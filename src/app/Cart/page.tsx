@@ -1,10 +1,10 @@
-// src/app/cart/page.tsx
+"use client";  // Ensures this component is rendered client-side
 
 import React from "react";
 import { CartProvider, useCart } from "./cartContext"; // Import from cartContext.tsx
 
 const CartPage = () => {
-  const { items, addToCart, removeFromCart } = useCart(); // Use the context
+  const { items } = useCart(); // Removed unused variables
 
   return (
     <div>

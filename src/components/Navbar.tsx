@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // For programmatic navigation
+import { useRouter } from "next/navigation";
 import { Search, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
+
+type CartItem = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+};
 
 const navItems = [
   "Plant pots",
@@ -26,11 +33,11 @@ const navItems = [
 
 export default function Navbar() {
   const router = useRouter();
-  const [cartItems, setCartItems] = useState([
+  const [cartItems] = useState<CartItem[]>([
     { id: 1, name: "Ceramic Pot", price: 25.99, quantity: 1 },
     { id: 2, name: "Wooden Chair", price: 49.99, quantity: 2 },
-  ]); // Example cart items
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // User login state
+  ]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleViewCart = () => {
     router.push("/cart");
@@ -44,7 +51,7 @@ export default function Navbar() {
     <nav className="border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Left side: Search Icon (Desktop only) */}
+          {/* Search Icon (Desktop only) */}
           <div className="hidden lg:flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -61,16 +68,15 @@ export default function Navbar() {
             </DropdownMenu>
           </div>
 
-          {/* Center: Logo */}
+          {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <span className="font-serif text-2xl">Avion</span>
             </Link>
           </div>
 
-          {/* Right side: Cart & Profile Icons (Desktop only) */}
+          {/* Cart & Profile Icons (Desktop only) */}
           <div className="hidden lg:flex items-center">
-            {/* Shopping Cart */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="ml-4 text-gray-400 hover:text-gray-500">
@@ -94,9 +100,7 @@ export default function Navbar() {
                     </DropdownMenuItem>
                   </>
                 ) : (
-                  <DropdownMenuItem disabled>
-                    Your cart is empty
-                  </DropdownMenuItem>
+                  <DropdownMenuItem disabled>Your cart is empty</DropdownMenuItem>
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
@@ -133,7 +137,7 @@ export default function Navbar() {
             </DropdownMenu>
           </div>
 
-          {/* Mobile menu and search */}
+          {/* Mobile Menu */}
           <div className="flex lg:hidden items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -172,7 +176,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Navigation Links (Desktop only) */}
+        {/* Desktop Navigation Links */}
         <div className="hidden lg:flex lg:items-center lg:justify-center flex-wrap gap-4 mt-4">
           {navItems.map((item) => (
             <Link

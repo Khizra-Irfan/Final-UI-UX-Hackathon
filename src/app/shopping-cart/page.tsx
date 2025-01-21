@@ -1,5 +1,4 @@
-
-"use client"; 
+"use client"; // Ensures this component is rendered on the client side
 
 import React from "react";
 import Image from "next/image";  // Import Next.js Image component
