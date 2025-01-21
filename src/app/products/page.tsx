@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";  
 import { Input } from "@/components/ui/input";
 import { Truck, Medal, CreditCard, Recycle } from 'lucide-react';
 

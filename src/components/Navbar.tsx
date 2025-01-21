@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // For programmatic navigation
 import { Search, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,8 +14,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 
-// Navigation items
-const navItems: string[] = [
+const navItems = [
   "Plant pots",
   "Ceramics",
   "Tables",
@@ -22,8 +24,22 @@ const navItems: string[] = [
   "Cutlery",
 ];
 
-// Navbar component
 export default function Navbar() {
+  const router = useRouter();
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: "Ceramic Pot", price: 25.99, quantity: 1 },
+    { id: 2, name: "Wooden Chair", price: 49.99, quantity: 2 },
+  ]); // Example cart items
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // User login state
+
+  const handleViewCart = () => {
+    router.push("/cart");
+  };
+
+  const handleCheckout = () => {
+    router.push("/checkout");
+  };
+
   return (
     <nav className="border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,10 +70,38 @@ export default function Navbar() {
 
           {/* Right side: Cart & Profile Icons (Desktop only) */}
           <div className="hidden lg:flex items-center">
-            <Button variant="ghost" size="icon" className="ml-4 text-gray-400 hover:text-gray-500">
-              <ShoppingCart className="h-6 w-6" />
-              <span className="sr-only">Shopping cart</span>
-            </Button>
+            {/* Shopping Cart */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="ml-4 text-gray-400 hover:text-gray-500">
+                  <ShoppingCart className="h-6 w-6" />
+                  {cartItems.length > 0 && (
+                    <span className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full px-1.5">
+                      {cartItems.length}
+                    </span>
+                  )}
+                  <span className="sr-only">Shopping cart</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {cartItems.length > 0 ? (
+                  <>
+                    <DropdownMenuItem onClick={handleViewCart}>
+                      View Cart ({cartItems.length} items)
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleCheckout}>
+                      Checkout
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <DropdownMenuItem disabled>
+                    Your cart is empty
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* User Profile */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="ml-4 text-gray-400 hover:text-gray-500">
@@ -66,12 +110,25 @@ export default function Navbar() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                  <Link href="/signin">Sign In</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/login">Login</Link>
-                </DropdownMenuItem>
+                {isLoggedIn ? (
+                  <>
+                    <DropdownMenuItem>
+                      <Link href="/profile">Profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setIsLoggedIn(false)}>
+                      Logout
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <>
+                    <DropdownMenuItem>
+                      <Link href="/login">Login</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link href="/signup">Sign Up</Link>
+                    </DropdownMenuItem>
+                  </>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

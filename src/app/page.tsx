@@ -1,17 +1,22 @@
-"use client"
+import Hero from "./../components/Hero";
+import Ceramics from "./../components/Ceramics";
+import Product from "./../components/product";
+import Benefit from "./../components/benefit";
+import Touch from "./../components/touch";
+import ProductListing from "./../components/productlisting";
 
-import Hero from "@/components/hero-banner";
-import Features from "@/components/features-section";
-import News from "@/components/newsletter-section";
-import Hero2 from "@/components/hero-section";
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-      <Features />
-      <Hero2 />
-      <News />
-    </>
+   <>
+   <Hero />
+   <Ceramics />
+   <Product />
+   <Benefit />
+   <Touch />
+<ProductListing/>
+   
+
+   </>
   );
 }

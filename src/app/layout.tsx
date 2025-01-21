@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { CartProvider } from "../app/cart/cartContext"; // Ensure correct import path
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,7 +14,7 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
-}); 
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,9 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <Navbar />
-        <main className="max-w-7xl mx-auto">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          <main className="max-w-7xl mx-auto">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

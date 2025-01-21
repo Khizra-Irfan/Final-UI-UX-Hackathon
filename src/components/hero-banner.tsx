@@ -5,16 +5,16 @@ export default function HeroBanner() {
   return (
     <div className="relative min-h-[700px] md:min-h-[600px] lg:min-h-[700px] flex flex-col md:block">
       {/* White Box - On top for mobile, overlaid for larger screens */}
-      <div className="bg-white p-8 md:p-12 md:max-w-lg lg:max-w-xl xl:max-w-2xl md:absolute md:top-1/2 md:right-20 md:transform md:-translate-y-1/2 z-10 ">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4 leading-tight ">
-     Luxury homeware for people who love timeless design quality
+      <div className="bg-white p-6 sm:p-8 md:p-12 w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl md:absolute md:top-1/2 md:right-20 md:transform md:-translate-y-1/2 z-10">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 leading-snug sm:leading-tight">
+          Luxury homeware for people who love timeless design quality
         </h1>
-        <p className="text-gray-600 mb-6">
-         Shop the new Spring 2022 collection today
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-6">
+          Shop the new Spring 2022 collection today
         </p>
         <Button
           variant="outline"
-          className="text-[#2A254B] hover:bg-gray-100 bg-gray-300 lg:mt-32 font-serif"
+          className="text-[#2A254B] hover:bg-gray-100 bg-gray-300 font-serif"
         >
           View collection
         </Button>
